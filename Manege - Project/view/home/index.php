@@ -1,3 +1,3 @@
-<section class="bg-dark text-white">
-    <h2>Index.php</h2>
+<section>
+    <h2>Index</h2>
 </section>
