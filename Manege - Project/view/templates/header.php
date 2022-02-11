@@ -14,10 +14,10 @@
 
 			<nav>
 				<ul>
-					<li><a href="#">Home</a></li>
-					<li><a href="#">Users</a></li>
-					<li><a href="#">Rides</a></li>
-					<li><a href="#">Reservations</a></li>
+					<li><a href="<?= URL ?>home/index">Home</a></li>
+					<li><a href="<?= URL ?>home/users">Users</a></li>
+					<li><a href="<?= URL ?>home/rides">Rides</a></li>
+					<li><a href="<?= URL ?>home/reservation">Reservations</a></li>
 				</ul>
 			</nav>
 		</header>
