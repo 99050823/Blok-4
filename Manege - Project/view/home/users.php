@@ -28,7 +28,7 @@
             $count = count($data);
 
             for ($i=0; $i < $count; $i++) { 
-                echo "<div>".$data[$i]['Name']."</div>";
+                echo "<div>".$data[$i]['UserName']."</div>";
             }
 
         ?>

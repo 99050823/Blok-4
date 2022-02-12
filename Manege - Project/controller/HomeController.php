@@ -16,11 +16,23 @@
     }
 
     function reservation () {
-        render('home/reservation');
+        $dataArr = array();
+
+        $userData = getNamesUsers();
+        $animalData = getNamesAnimals();
+
+        array_push($dataArr, $userData, $animalData);
+
+        render('home/reservation', $dataArr);
     }
 
     //User controll
     function createUser ($name, $adress, $phone) {
         addUser($name, $adress, $phone);
     }
+
+    //Rides controll
+    function createRide ($user, $horse, $time) {
+        addRide($user, $horse, $time);
+    } 
 ?>
