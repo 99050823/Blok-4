@@ -12,7 +12,7 @@
     }
 
     if ($deleteAll) {
-        deleteAllFunc('users');
+        deleteAllFunc('users', TRUE);
     }
 ?>
 
@@ -21,19 +21,19 @@
 
     <form method="post">
         <label for="name">Username : </label>
-        <input name="name" type="text"><br>
+        <input name="name" type="text" required><br>
 
-        <label for="adress">Adress : </label>
-        <input name="adress" type="text"><br>
+        <label for="adress">ZIP code : </label>
+        <input name="adress" type="text" pattern="[0-9]{4}[A-Z]{2}" required><br><br>
 
         <label for="phone">Telephone : </label>
-        <input name="phone" type="text"><br>
+        <input name="phone" type="tel" pattern="[0-9]{10}" required><br>
 
         <input name="subButton" type="submit" value="Add User">
     </form>
 </section>
 
-<div class="users-panel">
+<div id="userPanel" class="users-panel">
     <?php
 
         $count = count($data);
@@ -45,18 +45,22 @@
                 <h3>User ".$number."</h3>
 
                 <p> Username : ".$data[$i]['UserName']."</p>
-                <p> Adress : ".$data[$i]['Adress']."</p>
+                <p> ZIP code : ".$data[$i]['Adress']."</p>
                 <p> Telephone : ".$data[$i]['Telephone']."</p>
 
                 <a href='".URL."home/editUser?var=".$data[$i]['ID']."'>EDIT</a>
-                <a href='".URL."home/deleteSinglefunc?var=".$data[$i]['ID']."&table=users'>DELETE</a>
+                <a href='".URL."home/deleteSinglefunc?var=".$data[$i]['ID']."&table=users&bool=true&user=".$data[$i]['UserName']."'>DELETE</a>
             </div>";
 
             $number++;
         }
     ?>
 
-    <form method="post">
-        <input name="deleteAllBttn" type="submit" value="Delete All">
-    </form>
+    <?php 
+        if ($count > 0) {
+            echo "<form method='post'>";
+            echo "<input id=\"deleteAllBttn\" name=\"deleteAllBttn\" type=\"submit\" value=\"Delete All\">";
+            echo "</form>";
+        }
+    ?>
 </div>

@@ -2,19 +2,20 @@
     $deleteAll = $_POST['deleteAllBttn'];
 
     if ($deleteAll) {
-        deleteAllFunc('rides');
+        deleteAllFunc('rides', FALSE);
     }
 
 ?>
 
-    <h2>Rides : </h2>
+<h2>Rides : </h2>
 
-    <div class="rides-panel">
-        <?php
-        
-            $count = count($data);
-            $number = 1;
+<div id="ridesPanel" class="rides-panel">
+    <?php
+    
+        $count = count($data);
+        $number = 1;
 
+        if ($count > 0) {
             for ($i=0; $i < $count; $i++) { 
                 echo "<div class='rides-block'>
                     <h3>Ride".$number."</h3>
@@ -25,15 +26,21 @@
                     <p>Total : €".$data[$i]['Price']."</p>
 
                     <a href='".URL."home/editRide?var=".$data[$i]['ID']."'>EDIT</a>
-                    <a href='".URL."home/editRide?var=".$data[$i]['ID']."&table=animals'>DELETE</a>
+                    <a href='".URL."home/deleteSinglefunc?var=".$data[$i]['ID']."&table=rides'>DELETE</a>
                 </div>";
 
                 $number++;
             }
-        
-        ?>
+        } else {
+            echo "<h2>No rides available</h2>";
+        }   
+    ?>
 
-        <form method="post">
-            <input name="deleteAllBttn" type="submit" value="Delete All">
-        </form>
-    </div>
+    <?php 
+        if ($count > 0) {
+            echo "<form method='post'>";
+            echo "<input id=\"deleteAllBttn\" name=\"deleteAllBttn\" type=\"submit\" value=\"Delete All\">";
+            echo "</form>";
+        }
+    ?>
+</div>

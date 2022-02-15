@@ -65,16 +65,33 @@
     }
 
     //Delete All 
-    function deleteAllfunc ($table) {
+    function deleteAllfunc ($table, $check) {
+
+        if ($check == TRUE) {
+            deleteAll('rides');
+        }
+        
         deleteAll($table);
         header("Location:/Blok-4/Manege%20-%20Project/home");
     } 
 
     //Delete single 
     function deleteSinglefunc () {
-        echo 'test';
         $id = $_GET['var'];
         $table = $_GET['table'];
+        $check = $_GET['bool'];
+        $user = $_GET['user'];
+
+        if ($check == 'true') {
+
+            $data = getAllRides();
+            $count = count($data);
+
+            if ($count >= 0) {
+                deleteSingleRide($user);
+            } 
+        }
+
         deleteSingle($id, $table);
         header("Location:/Blok-4/Manege%20-%20Project/home");
     }

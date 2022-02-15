@@ -144,9 +144,22 @@
     function deleteSingle ($id, $table) {
 
         try {
-            echo "mooi";
             $conn = openDatabaseConnection();
             $stmt = $conn->prepare("DELETE FROM $table WHERE ID='".$id."'");
+            $stmt->execute();
+        }
+        catch(Exception $e){
+            echo "Connection failed: " . $e->getMessage();
+        }
+
+        $conn = null;
+    }
+
+    function deleteSingleRide ($name) {
+
+        try {
+            $conn = openDatabaseConnection();
+            $stmt = $conn->prepare("DELETE FROM rides WHERE User='".$name."'");
             $stmt->execute();
         }
         catch(Exception $e){
