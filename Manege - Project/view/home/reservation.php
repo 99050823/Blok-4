@@ -8,10 +8,10 @@
     if ($submit) {
         $userName = $_POST['username'];
         $animalName = $_POST['animalname'];
+        $start = $_POST['time'];
+        $amount = $_POST['amount'];
 
-        $time = $_POST['time'];
-
-        createRide($userName, $animalName, $time);
+        createRide($userName, $animalName, $start, $amount);
     }
 ?>
 
@@ -37,7 +37,12 @@
             ?>
         </select><br>
 
-        <input type="time" name="time">
+        <label for="">Start Time : </label>
+        <input type="time" name="time" min="08:00" max="18:00"><br>
+
+        <label for="amount">Rides : </label>
+        <input type="number" name="amount" min="0" max="4"><br>
+
         <input name="subButton" type="submit" value="Submit">
     </form>
 </section>

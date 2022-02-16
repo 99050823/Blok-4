@@ -96,19 +96,19 @@
         $conn = null;
     }
 
-    function addRide ($user, $horse, $time, $total) {
+    // function addRide () {
 
-        try {
-            $conn = openDatabaseConnection();
-            $stmt = $conn->prepare("INSERT INTO rides (User, Horse, Time, Price) VALUES ('".$user."', '".$horse."', '".$time."', '".$total."')");
-            $stmt->execute();
-        }
-        catch(PDOException $e){
-            echo "Connection failed: " . $e->getMessage();
-        }
+    //     try {
+    //         $conn = openDatabaseConnection();
+    //         $stmt = $conn->prepare("INSERT INTO rides (User, Horse, Time, Price) VALUES ('".$user."', '".$horse."', '".$time."', '".$total."')");
+    //         $stmt->execute();
+    //     }
+    //     catch(PDOException $e){
+    //         echo "Connection failed: " . $e->getMessage();
+    //     }
 
-        $conn = null;
-    }
+    //     $conn = null;
+    // }
 
     function getAllRides() {
 

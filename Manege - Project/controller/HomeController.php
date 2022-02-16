@@ -43,9 +43,10 @@
     }
 
     //Rides controll
-    function createRide ($user, $horse, $time) {
-        $total = $time * 55;
-        addRide($user, $horse, $time, $total);
+    function createRide ($user, $horse, $start, $amount) {
+        // Time function
+        
+        // addRide($user, $horse, $start, $amount);
     }
     
     function editRide () {

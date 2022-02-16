@@ -17,13 +17,13 @@
 
     <form method="post">
         <label for="name">Username : </label>
-        <input name="name" type="text"><br>
+        <input name="name" type="text" required><br>
 
-        <label for="adress">Adress : </label>
-        <input name="adress" type="text"><br>
+        <label for="adress">ZIP code : </label>
+        <input name="adress" type="text" pattern="[0-9]{4}[A-Z]{2}" required><br><br>
 
         <label for="phone">Telephone : </label>
-        <input name="phone" type="text"><br>
+        <input name="phone" type="tel" pattern="[0-9]{10}" required><br>
 
         <input name="subButton" type="submit" value="EDIT">
     </form>
