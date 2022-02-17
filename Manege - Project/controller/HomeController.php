@@ -27,6 +27,11 @@
         render('home/reservation', $dataArr);
     }
 
+    function horses () {
+        $data = getAllAnimals();
+        render('home/horses', $data);
+    }
+
     //User controll
     function createUser ($name, $adress, $phone) {
         addUser($name, $adress, $phone);
@@ -45,8 +50,18 @@
     //Rides controll
     function createRide ($user, $horse, $start, $amount) {
         // Time function
-        
-        // addRide($user, $horse, $start, $amount);
+
+        $startTime = strtotime($start);
+        $endTime = $startTime + 60*60 * $amount;
+
+        $startTime = date("H:i", $startTime);    
+        $endTime = date("H:i", $endTime);
+
+        //Total Price 
+        $price = $amount * 55;
+
+        addRide($user, $horse, $startTime, $endTime, $amount, $price);
+        header("Location:/Blok-4/Manege%20-%20Project/home");
     }
     
     function editRide () {
@@ -96,4 +111,5 @@
         deleteSingle($id, $table);
         header("Location:/Blok-4/Manege%20-%20Project/home");
     }
+
 ?>

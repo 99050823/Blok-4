@@ -1,5 +1,6 @@
 <?php
 
+    //SELECT FROM 
     function getAllUsers() {
 
         try {
@@ -16,35 +17,6 @@
         $result = $stmt->fetchAll();
         
         return $result;
-    }
-
-    function editUserRecord($id, $name, $adress, $phone) {
-
-        try {
-            $conn = openDatabaseConnection();
-            $stmt = $conn->prepare("UPDATE users SET UserName='".$name."', Adress='".$adress."', Telephone='".$phone."' WHERE ID='".$id."'");
-            $stmt->execute();
-
-        } 
-        catch (PDOException $e) {
-            echo "Connection failed: " . $e->getMessage();
-        }
-
-        $conn = null;
-    }
-
-    function editRideRecord($id, $user, $horse, $time) {
-
-        try {
-            $conn = openDatabaseConnection();
-            $stmt = $conn->prepare("UPDATE rides SET User='".$user."', Horse='".$horse."', Time='".$time."' WHERE ID='".$id."'");
-            $stmt->execute();
-        } 
-        catch (PDOException $e) {
-            echo "Connection failed: " . $e->getMessage();
-        }
-
-        $conn = null;
     }
 
     function getNamesUsers() {
@@ -82,34 +54,6 @@
         return $result;
     }
 
-    function addUser ($name, $adress, $phone) {
-        
-        try {
-            $conn = openDatabaseConnection();
-            $stmt = $conn->prepare("INSERT INTO users (UserName, Adress, Telephone) VALUES ('".$name."', '".$adress."', '".$phone."')");
-            $stmt->execute();
-        }
-        catch(PDOException $e){
-            echo "Connection failed: " . $e->getMessage();
-        }
-
-        $conn = null;
-    }
-
-    // function addRide () {
-
-    //     try {
-    //         $conn = openDatabaseConnection();
-    //         $stmt = $conn->prepare("INSERT INTO rides (User, Horse, Time, Price) VALUES ('".$user."', '".$horse."', '".$time."', '".$total."')");
-    //         $stmt->execute();
-    //     }
-    //     catch(PDOException $e){
-    //         echo "Connection failed: " . $e->getMessage();
-    //     }
-
-    //     $conn = null;
-    // }
-
     function getAllRides() {
 
         try {
@@ -127,6 +71,77 @@
         return $result;
     }
 
+    //END SELECT FROM
+    //-----------------------------------------------------
+
+    //UPDATE
+    function editUserRecord($id, $name, $adress, $phone) {
+
+        try {
+            $conn = openDatabaseConnection();
+            $stmt = $conn->prepare("UPDATE users SET UserName='".$name."', Adress='".$adress."', Telephone='".$phone."' WHERE ID='".$id."'");
+            $stmt->execute();
+
+        } 
+        catch (PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+        }
+
+        $conn = null;
+    }
+
+    function editRideRecord($id, $user, $horse, $time) {
+
+        try {
+            $conn = openDatabaseConnection();
+            $stmt = $conn->prepare("UPDATE rides SET User='".$user."', Horse='".$horse."', Time='".$time."' WHERE ID='".$id."'");
+            $stmt->execute();
+        } 
+        catch (PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+        }
+
+        $conn = null;
+    }
+
+    //END UPDATE
+    //-----------------------------------------------------
+
+    //INSERT INTO 
+    function addUser ($name, $adress, $phone) {
+        
+        try {
+            $conn = openDatabaseConnection();
+            $stmt = $conn->prepare("INSERT INTO users (UserName, Adress, Telephone) VALUES ('".$name."', '".$adress."', '".$phone."')");
+            $stmt->execute();
+        }
+        catch(PDOException $e){
+            echo "Connection failed: " . $e->getMessage();
+        }
+
+        $conn = null;
+    }
+
+    function addRide ($user, $horse, $startTime, $endTime, $rideAmount, $total) {
+
+        try {
+            $conn = openDatabaseConnection();
+
+            $stmt = $conn->prepare("INSERT INTO rides (User, Horse, StartTime, EndTime, Rides, Price) 
+            VALUES ('".$user."', '".$horse."', '".$startTime."', '".$endTime."', '".$rideAmount."', '".$total."')");
+
+            $stmt->execute();
+        }
+        catch(PDOException $e){
+            echo "Connection failed: " . $e->getMessage();
+        }
+
+        $conn = null;
+    }
+    //END INSERT INTO
+    //-----------------------------------------------------
+
+    //DELETE 
     function deleteAll($table) {
 
         try {
@@ -168,4 +183,6 @@
 
         $conn = null;
     }
+    //END DELETE
+    //-----------------------------------------------------
 ?>

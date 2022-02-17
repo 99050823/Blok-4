@@ -31,7 +31,7 @@ form input[type=submit] {
     margin-bottom: 20px;
 }
 
-.users-panel, .rides-panel {
+.users-panel, .rides-panel, .animal-panel {
     display: grid;
     width: 800px;
     grid-template-columns: 200px 200px 200px 200px;
@@ -39,7 +39,7 @@ form input[type=submit] {
     text-align: center;
 }
 
-.user-block, .rides-block {
+.user-block, .rides-block, .animal-block {
     background-color: rgb(69, 184, 69);
     border-radius: 10px;
     margin: 0 10px 10px 0;
@@ -60,3 +60,4 @@ form input[type=submit] {
     text-decoration: underline;
     margin-left: 20px;
 }
+

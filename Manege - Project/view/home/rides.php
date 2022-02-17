@@ -20,10 +20,15 @@
                 echo "<div class='rides-block'>
                     <h3>Ride".$number."</h3>
 
-                    <p>Rider : ".$data[$i]['User']."</p>
-                    <p>Horse : ".$data[$i]['Horse']."</p>
-                    <p>Time : ".$data[$i]['Time']."</p>
-                    <p>Total : €".$data[$i]['Price']."</p>
+                    <ul>
+                        <li>Rider : ".$data[$i]['User']."</li>
+                        <li>Horse : ".$data[$i]['Horse']."</li>
+                        <br>
+                        <li>StartTime : ".$data[$i]['StartTime']."</li>
+                        <li>EndTime : ".$data[$i]['EndTime']."</li>
+                        <li>Rides : ".$data[$i]['Rides']."x</li>
+                        <li>Total : €".$data[$i]['Price']."</li>
+                    </ul>
 
                     <a href='".URL."home/editRide?var=".$data[$i]['ID']."'>EDIT</a>
                     <a href='".URL."home/deleteSinglefunc?var=".$data[$i]['ID']."&table=rides'>DELETE</a>

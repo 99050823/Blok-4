@@ -19,7 +19,7 @@
     <h2>Edit Ride</h2>
 
     <form method="post">
-        <label for="username">User : </label>
+        <label for="username">Select User : </label>
         <select name="username">
             <?php  
                 for ($i=0; $i < $countUsers; $i++) { 
@@ -28,7 +28,7 @@
             ?>
         </select><br>
 
-        <label for="animalname">Horse : </label>
+        <label for="animalname">Select Horse : </label>
         <select name="animalname">
             <?php  
                 for ($i=0; $i < $countAnimal; $i++) { 
@@ -37,9 +37,12 @@
             ?>
         </select><br>
 
-        <label for="time">Time : </label>
-        <input name="time" type="time"><br>
+        <label for="">Start Time : </label>
+        <input type="time" name="time" min="08:00" max="18:00"><br>
 
-        <input name="subButton" type="submit" value="EDIT">
+        <label for="amount">Rides : </label>
+        <input type="number" name="amount" min="0" max="4"><br>
+
+        <input name="subButton" type="submit" value="Submit">
     </form>
 </section>
