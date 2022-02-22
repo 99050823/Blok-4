@@ -36,6 +36,23 @@
         return $result;
     }
 
+    function getUser($id) {
+
+        try {
+            $conn = openDatabaseConnection();
+            $stmt = $conn->prepare("SELECT * FROM users WHERE id=$id");
+            $stmt->execute();
+        } 
+        catch (PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+        }
+
+        $conn = null;
+        $result = $stmt->fetch();
+        
+        return $result;
+    }
+
     function getNamesAnimals() {
 
         try {

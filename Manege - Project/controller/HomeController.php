@@ -39,7 +39,10 @@
     }
 
     function editUser () {
-        render('home/editUser');
+        $id = $_GET['var'];
+        $user = getUser($id);
+
+        render('home/editUser', $user);
     }
 
     function updateUser ($id, $name, $adress, $phone) {

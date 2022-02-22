@@ -3,6 +3,8 @@
     $submit = $_POST['subButton'];
     $id = $_GET['var'];
 
+    $name = $data['UserName'];
+
     if ($submit) {
         $name = $_POST['name'];
         $adress = $_POST['adress'];
@@ -17,7 +19,7 @@
 
     <form method="post">
         <label for="name">Username : </label>
-        <input name="name" type="text" required><br>
+        <input name="name" type="text" value="<?php echo $name?>" required><br>
 
         <label for="adress">ZIP code : </label>
         <input name="adress" type="text" pattern="[0-9]{4}[A-Z]{2}" required><br><br>
