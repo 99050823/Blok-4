@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php require 'PHP/connect.php';?>
+<?php require 'PHP/database.php';?>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDo list</title>
+    <link rel="stylesheet" href="Style/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">   
 </head>
 <body>
 
     <div class="container">
         <header>
-            <div>
-                <h2>Username: User</h2>
+            <div class="first">
+                <h3>Username: User</h3>
             </div>
 
-            <div>
-                <ul>
-                    <li>item1</li>
-                    <li>item2</li>
-                    <li>item3</li>
-                    <li>item4</li>
+            <div class="second">
+                <ul class="nav">
+                    <li><a href="index.php">Home</a></li>
                 </ul>
             </div>
         </header>
@@ -27,25 +30,34 @@
         <section>
             <!-- LIST Elements -->
 
-            <div data-todo="list">
-                <h3>List Title</h3>
-                <button>Delete</button>
+            <?php
+            
+                if (isset($_GET['pagina'])) {
+                    require "Pages/".$_GET['pagina'].".php";
+                } else {
+                    $list = getLists($conn);
+                    
+                    echo "<div class='scrollable'>";
+                    while($row = $list->fetch_assoc()) {
 
-                <ul>
-                    <li>Todo1</li>
-                    <li>Todo1</li>
-                    <li>Todo1</li>
-                </ul>
+                        echo "<div class='list'>
+                            <a href='index.php?pagina=delete&list_name=".$row['list_name']."&id=".$row['id']."' class='delete'>Delete</a>
+                            <h3>".$row['list_name']."</h3>
+                        
+                            <a href='index.php?pagina=view&id=".$row['id']."' class='view'>View</a>
+                        </div><br>";
+                    }
+                    echo "</div>";
 
-                <p>Username</p>
-                <button>View Button</button>
-            </div>
+        
+                    echo "<a href='index.php?pagina=addList'>Add List</a>";
+                }
 
-            <button>Add List</button>
+            ?>
+
         </section>
 
         <footer>Footer</footer>
     </div>
-
 </body>
 </html>
