@@ -1,11 +1,12 @@
 <?php
 
-    $name = $_GET['list_name'];
+    $type = $_GET['type'];
+    $name = $_GET['name'];
     $id = $_GET['id'];
     $delete = $_POST['delete'];
 
     if ($delete) {
-        deleteSingle($id, 'lists', $conn);
+        deleteSingle($id, $type, $conn);
         header("Location: index.php");
     }
 

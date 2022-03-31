@@ -1,16 +1,17 @@
-const list = document.getElementById('to-do');
-const items = list.querySelectorAll('li');
+const navbar = document.querySelector(".nav");
 
-var line_bool = false; 
+const newListNames = ['Filter Status', 'Filter Duration'];
+const listFunction = ['status', 'duration'];
 
-items.forEach(el => {
-    el.addEventListener("click", () => {
-        if (line_bool == false) {
-            el.style.textDecoration = "line-through";
-            line_bool = true;
-        } else if (line_bool == true) {
-            el.style.textDecoration = "none";
-            line_bool = false;
-        }
-    })
-})
+for (let i = 0; i < 2; i++) {
+    let listItem = document.createElement("li");
+    let anchorItem = document.createElement("a");
+
+    anchorItem.innerHTML = newListNames[i];
+    anchorItem.href = `index.php?pagina=filter&filterType=${listFunction[i]}`;
+
+    listItem.append(anchorItem);
+    navbar.append(listItem);
+}
+
+

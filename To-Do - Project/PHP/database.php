@@ -40,6 +40,17 @@
         return $result;
     }
 
+    function getSingleTodo($conn, $id) {
+        try {
+            $stmt = "SELECT * FROM todo_items WHERE id='".$id."'";
+            $result = $conn->query($stmt);
+        } catch(PDOException $e){
+            echo "Connection failed: " . $e->getMessage();
+        }
+
+        return $result;
+    }
+
     function deleteSingle ($id, $location, $conn) {
         try {
             $stmt = "DELETE FROM $location WHERE id='".$id."'";
@@ -71,4 +82,37 @@
         }
     }
 
+    function editStatus($conn, $status, $id) {
+        try {
+            $stmt = "UPDATE todo_items 
+            SET status='".$status."'
+            WHERE id='".$id."'";
+            $conn->query($stmt);
+        } catch(PDOException $e){
+            echo "Connection failed: " . $e->getMessage();
+        }
+    }
+
+    function filterStatus($conn) {
+        try { 
+            $stmt = "SELECT * FROM todo_items WHERE status='Done'";
+            $result = $conn->query($stmt);
+        } catch(PDOException $e){
+            echo "Connection failed: " . $e->getMessage();
+        }
+
+        return $result;
+    }
+
+    function filterDuration($conn) {
+        try {
+            $stmt = "SELECT * FROM todo_items
+            ORDER BY duration ASC";
+            $result = $conn->query($stmt);
+        } catch(PDOException $e){
+            echo "Connection failed: " . $e->getMessage();
+        }
+
+        return $result;
+    }
 ?>

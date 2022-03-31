@@ -42,10 +42,10 @@
                     while($row = $list->fetch_assoc()) {
 
                         echo "<div class='list'>
-                            <a href='index.php?pagina=delete&list_name=".$row['list_name']."&id=".$row['id']."' class='delete'>Delete</a>
+                            <a href='index.php?pagina=delete&name=".$row['list_name']."&id=".$row['id']."&type=lists' class='delete'>Delete</a>
                             <h3>".$row['list_name']."</h3>
                         
-                            <a href='index.php?pagina=view&id=".$row['id']."' class='view'>View</a>
+                            <a href='index.php?pagina=viewList&id=".$row['id']."' class='view'>View</a>
                         </div><br>";
                     }
                     echo "</div>";
@@ -60,7 +60,5 @@
 
         <footer>Footer</footer>
     </div>
-
-    <script src="Script/script.js"></script>
 </body>
 </html>
