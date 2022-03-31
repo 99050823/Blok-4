@@ -48,4 +48,27 @@
             echo "Connection failed: " . $e->getMessage();
         }
     }
+
+    function getTodo($conn, $list) {
+        try {
+            $stmt = "SELECT * FROM todo_items WHERE list='".$list."'";
+            $result = $conn->query($stmt);
+        } catch(PDOException $e){
+            echo "Connection failed: " . $e->getMessage();
+        }
+
+        return $result;
+    }
+
+    function editTodo($conn, $id, $title, $description, $duration) {
+        try {
+            $stmt = "UPDATE todo_items 
+            SET todo_title='".$title."', todo_text='".$description."', duration='".$duration."'
+            WHERE id='".$id."'";
+            $conn->query($stmt);
+        } catch(PDOException $e){
+            echo "Connection failed: " . $e->getMessage();
+        }
+    }
+
 ?>
