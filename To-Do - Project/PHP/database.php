@@ -71,6 +71,28 @@
         return $result;
     }
 
+    function getTodoCount($conn, $list) {
+        try {
+            $stmt = "SELECT COUNT(id) AS row_count FROM todo_items WHERE list='".$list."'";
+            $result = $conn->query($stmt);
+        } catch(PDOException $e){
+            echo "Connection failed: " . $e->getMessage();
+        }
+
+        return $result;
+    }
+
+    function getListCount ($conn) {
+        try {
+            $stmt = "SELECT COUNT(id) AS row_count FROM lists";
+            $result = $conn->query($stmt);
+        } catch(PDOException $e){
+            echo "Connection failed: " . $e->getMessage();
+        }
+
+        return $result;
+    }
+
     function editTodo($conn, $id, $title, $description, $duration) {
         try {
             $stmt = "UPDATE todo_items 
@@ -104,15 +126,24 @@
         return $result;
     }
 
-    function filterDuration($conn) {
+    function filterDuration($conn, $type) {
         try {
             $stmt = "SELECT * FROM todo_items
-            ORDER BY duration ASC";
+            ORDER BY duration $type";
             $result = $conn->query($stmt);
         } catch(PDOException $e){
             echo "Connection failed: " . $e->getMessage();
         }
 
         return $result;
+    }
+
+    function deleteTodo($conn, $list) {
+        try {
+            $stmt = "DELETE FROM todo_items WHERE list='".$list."'";
+            $conn->query($stmt);
+        } catch(PDOException $e){
+            echo "Connection failed: " . $e->getMessage();
+        }
     }
 ?>

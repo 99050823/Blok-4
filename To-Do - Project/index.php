@@ -32,25 +32,41 @@
             <!-- LIST Elements -->
 
             <?php
+                $list = getLists($conn);
+                $listCount = getListCount($conn);
+                $rowCount = $listCount->fetch_assoc();
+                $count = $rowCount['row_count'];
             
                 if (isset($_GET['pagina'])) {
                     require "Pages/".$_GET['pagina'].".php";
-                } else {
-                    $list = getLists($conn);
-                    
+                } else if($count > 0){
                     echo "<div class='scrollable'>";
                     while($row = $list->fetch_assoc()) {
 
                         echo "<div class='list'>
                             <a href='index.php?pagina=delete&name=".$row['list_name']."&id=".$row['id']."&type=lists' class='delete'>Delete</a>
                             <h3>".$row['list_name']."</h3>
-                        
-                            <a href='index.php?pagina=viewList&id=".$row['id']."' class='view'>View</a>
-                        </div><br>";
+                            <a href='index.php?pagina=viewList&id=".$row['id']."' class='view'>View
+                        </a>";
+
+                        $listName = $row['list_name'];
+                        $todos = getTodo($conn, $listName);
+
+                        echo "<ul class='todoOverview'>";
+
+                        while ($rowTodo = $todos->fetch_assoc()) {
+                            echo "<li>".$rowTodo['todo_title']."</li>";
+                        }
+
+                        echo "</ul>";
+
+                        echo "</div><br>";
                     }
                     echo "</div>";
 
-        
+                    echo "<a href='index.php?pagina=addList'>Add List</a>";
+                } else {
+                    echo "<h3>No lists available. Please add a new list.</h3>";
                     echo "<a href='index.php?pagina=addList'>Add List</a>";
                 }
 

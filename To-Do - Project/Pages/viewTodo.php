@@ -10,13 +10,22 @@
 
     $todo = getSingleTodo($conn, $id);
 
+    // function checkStatus ($status) {
+    //     if ($status == "Done") {
+            
+    //     }
+    // }
+
     while ($row = $todo->fetch_assoc()) {
+        $status = $row['status'];
+        // checkStatus($status);
+
         echo "<div class='todo-view'>
             <h2>".$row['todo_title']."</h2>
             <br>
             <p>Description: ".$row['todo_text']."</p>
             <p>Duratiton: ".$row['duration']."</p>
-            <p>".$row['status']."</p>
+            <p>".$status."</p>
             <br>
             <h3>Status:</h3>
             <form method='post'>

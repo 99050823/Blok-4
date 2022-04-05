@@ -92,5 +92,30 @@ h2 {
     color: white;
 }
 
+.filteredList {
+    margin: 0 6cm;
+    text-align: start;
+    list-style-position: inside; 
+}
+
+.hover-popUp {
+    display: none;
+}
+
+.hover-popUp li {
+    position: relative;
+    left: 20px;
+}
+
+.filteredList li:hover .hover-popUp{
+    display: block;
+    margin-bottom: 20px;
+}
+
+.todoOverview {
+    margin-top: 10px;
+    text-align: start;
+}
+
 i:hover {color: red}
 

@@ -5,8 +5,17 @@
     $id = $_GET['id'];
     $delete = $_POST['delete'];
 
+    $todo = getTodoCount($conn, $name);
+    $row = $todo->fetch_assoc();
+    $rowCount = $row['row_count'];
+
     if ($delete) {
         deleteSingle($id, $type, $conn);
+
+        if ($rowCount > 0) {
+            deleteTodo($conn, $name);
+        }
+
         header("Location: index.php");
     }
 

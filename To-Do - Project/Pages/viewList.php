@@ -33,5 +33,5 @@
         <a href='index.php?pagina=addTodo&list=".$name."'>Add To-Do</a>
     </div>";
 
-    echo "<script src='./Script/script.js'></script>"
+    echo "<script src='./Script/script.js'></script>";
 ?>

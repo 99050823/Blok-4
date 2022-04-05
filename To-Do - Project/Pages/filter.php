@@ -1,16 +1,28 @@
 <?php
 
     $type = $_GET['filterType'];
+    $timeFilter = $_GET['timeFilter'];
 
     if ($type == "status") {
         $items = filterStatus($conn);
-    } else if($type == "duration") {
-        $items = filterDuration($conn);
+    } else if($type == "duration" && $timeFilter == "ASC") {
+        $items = filterDuration($conn, $timeFilter);
+    } else if ($type == "duration" && $timeFilter == "DESC") {
+        $items = filterDuration($conn, $timeFilter);
     }
 
-    echo "<h2>Filter ".$type."</h2>";
+    echo "<h2 style='margin-bottom:20px;'>Filter ".$type."</h2>";
+
+    echo "<ul class='filteredList'>";
 
     while ($row = $items->fetch_assoc()) {
-        echo "<p>".$row['todo_title']."</p>";
+        echo "<li>".$row['todo_title']."
+            <ul class='hover-popUp'>
+                <li>".$row['duration']."</li>
+                <li>".$row['status']."</li>
+            </ul>
+        </li>";
     }
+
+    echo "</ul>";
 ?>
