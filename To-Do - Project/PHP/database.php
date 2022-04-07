@@ -1,9 +1,14 @@
 <?php
+
+    function clear ($conn, $val) {
+        return mysqli_real_escape_string($conn, $val);
+    }
+
     function sendList($param, $conn) {
         try {
-            $stmt = "INSERT INTO lists (list_name) VALUES ('".$param."')";
-            $conn->query($stmt);
-        } catch(PDOException $e){
+            $stmt = "INSERT INTO lists (list_name) VALUES ('".clear($conn, $param)."')";
+            mysqli_query($conn, $stmt);
+        } catch(mysqli_sql_exception $e){
             echo "Connection failed: " . $e->getMessage();
         }
     }
@@ -11,9 +16,9 @@
     function sendTodo($title, $description, $time, $status, $list, $conn) {
         try {
             $stmt = "INSERT INTO todo_items (todo_title, todo_text, duration, status, list) 
-            VALUES ('".$title."', '".$description."', '".$time."', '".$status."', '".$list."')";
-            $conn->query($stmt);
-        } catch(PDOException $e){
+            VALUES ('".clear($conn, $title)."', '".clear($conn, $description)."', '".clear($conn, $time)."', '".clear($conn, $status)."', '".clear($conn, $list)."')";
+            mysqli_query($conn, $stmt);
+        } catch(mysqli_sql_exception $e){
             echo "Connection failed: " . $e->getMessage();
         }
     }
@@ -21,8 +26,8 @@
     function getLists($conn) {
         try {
             $stmt = "SELECT id, list_name FROM lists";
-            $result = $conn->query($stmt);
-        } catch(PDOException $e){
+            $result = mysqli_query($conn, $stmt);
+        } catch(mysqli_sql_exception $e){
             echo "Connection failed: " . $e->getMessage();
         }
 
@@ -32,8 +37,8 @@
     function getSingleList($conn, $id) {
         try {
             $stmt = "SELECT list_name FROM lists WHERE id=".$id."";
-            $result = $conn->query($stmt);
-        } catch(PDOException $e){
+            $result = mysqli_query($conn, $stmt);
+        } catch(mysqli_sql_exception $e){
             echo "Connection failed: " . $e->getMessage();
         }
 
@@ -43,8 +48,8 @@
     function getSingleTodo($conn, $id) {
         try {
             $stmt = "SELECT * FROM todo_items WHERE id='".$id."'";
-            $result = $conn->query($stmt);
-        } catch(PDOException $e){
+            $result = mysqli_query($conn, $stmt);
+        } catch(mysqli_sql_exception $e){
             echo "Connection failed: " . $e->getMessage();
         }
 
@@ -54,8 +59,8 @@
     function deleteSingle ($id, $location, $conn) {
         try {
             $stmt = "DELETE FROM $location WHERE id='".$id."'";
-            $conn->query($stmt);
-        } catch(PDOException $e){
+            mysqli_query($conn, $stmt);
+        } catch(mysqli_sql_exception $e){
             echo "Connection failed: " . $e->getMessage();
         }
     }
@@ -63,8 +68,8 @@
     function getTodo($conn, $list) {
         try {
             $stmt = "SELECT * FROM todo_items WHERE list='".$list."'";
-            $result = $conn->query($stmt);
-        } catch(PDOException $e){
+            $result = mysqli_query($conn, $stmt);
+        } catch(mysqli_sql_exception $e){
             echo "Connection failed: " . $e->getMessage();
         }
 
@@ -74,8 +79,8 @@
     function getTodoCount($conn, $list) {
         try {
             $stmt = "SELECT COUNT(id) AS row_count FROM todo_items WHERE list='".$list."'";
-            $result = $conn->query($stmt);
-        } catch(PDOException $e){
+            $result = mysqli_query($conn, $stmt);
+        } catch(mysqli_sql_exception $e){
             echo "Connection failed: " . $e->getMessage();
         }
 
@@ -85,8 +90,8 @@
     function getListCount ($conn) {
         try {
             $stmt = "SELECT COUNT(id) AS row_count FROM lists";
-            $result = $conn->query($stmt);
-        } catch(PDOException $e){
+            $result = mysqli_query($conn, $stmt);
+        } catch(mysqli_sql_exception $e){
             echo "Connection failed: " . $e->getMessage();
         }
 
@@ -96,10 +101,10 @@
     function editTodo($conn, $id, $title, $description, $duration) {
         try {
             $stmt = "UPDATE todo_items 
-            SET todo_title='".$title."', todo_text='".$description."', duration='".$duration."'
-            WHERE id='".$id."'";
-            $conn->query($stmt);
-        } catch(PDOException $e){
+            SET todo_title='".clear($conn, $title)."', todo_text='".clear($conn, $description)."', duration='".clear($conn, $duration)."'
+            WHERE id='".clear($conn, $id)."'";
+            mysqli_query($conn, $stmt);
+        } catch(mysqli_sql_exception $e){
             echo "Connection failed: " . $e->getMessage();
         }
     }
@@ -109,8 +114,8 @@
             $stmt = "UPDATE todo_items 
             SET status='".$status."'
             WHERE id='".$id."'";
-            $conn->query($stmt);
-        } catch(PDOException $e){
+            mysqli_query($conn, $stmt);
+        } catch(mysqli_sql_exception $e){
             echo "Connection failed: " . $e->getMessage();
         }
     }
@@ -118,8 +123,8 @@
     function filterStatus($conn) {
         try { 
             $stmt = "SELECT * FROM todo_items WHERE status='Done'";
-            $result = $conn->query($stmt);
-        } catch(PDOException $e){
+            $result = mysqli_query($conn, $stmt);
+        } catch(mysqli_sql_exception $e){
             echo "Connection failed: " . $e->getMessage();
         }
 
@@ -130,8 +135,8 @@
         try {
             $stmt = "SELECT * FROM todo_items
             ORDER BY duration $type";
-            $result = $conn->query($stmt);
-        } catch(PDOException $e){
+            $result = mysqli_query($conn, $stmt);
+        } catch(mysqli_sql_exception $e){
             echo "Connection failed: " . $e->getMessage();
         }
 
@@ -141,8 +146,8 @@
     function deleteTodo($conn, $list) {
         try {
             $stmt = "DELETE FROM todo_items WHERE list='".$list."'";
-            $conn->query($stmt);
-        } catch(PDOException $e){
+            mysqli_query($conn, $stmt);
+        } catch(mysqli_sql_exception $e){
             echo "Connection failed: " . $e->getMessage();
         }
     }

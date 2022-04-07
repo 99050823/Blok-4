@@ -9,7 +9,7 @@
  
     echo "<div class='list-view'>
         <h2>".$name."</h2>
-    <ul id='to-do'>";
+    <ul>";
 
     while ($row = $todo->fetch_assoc()) {
         echo "<div>

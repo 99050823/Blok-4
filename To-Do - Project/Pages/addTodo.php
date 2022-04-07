@@ -6,7 +6,7 @@
         $title = $_POST['title'];
         $description = $_POST['description'];
         $time = $_POST['time'];
-        $status = null;
+        $status = 'In Progress';
         
         sendTodo($title, $description, $time, $status, $list, $conn);
         header("Location: index.php");
