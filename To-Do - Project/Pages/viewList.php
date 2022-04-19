@@ -26,6 +26,8 @@
             <a href='index.php?pagina=delete&id=".$row['id']."&type=todo_items&name=".$row['todo_title']."'>
                 <i class='fa-solid fa-trash-can'></i>
             </a>
+
+            <p>Status: ".$row['status']."</p>
         </div>";
     }
 

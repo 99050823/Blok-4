@@ -16,6 +16,7 @@
     echo "<ul class='filteredList'>";
 
     while ($row = $items->fetch_assoc()) {
+
         echo "<li><a href='index.php?pagina=viewTodo&id=".$row['id']."'>"
             .$row['todo_title']."</a>
             <ul class='hover-popUp'>
